@@ -31,12 +31,7 @@ namespace PromoAPI.Repository
 
         public async Task<int> CreatePromoPark(PromoParkModel promoPark)
         {
-            var data = new PromoParkDTO(){ 
-                Title = promoPark.Title,
-                Sorce = promoPark.Sorce,
-                Descbtion = promoPark.Descbtion,
-                Date = promoPark.Date
-            };
+            var data =  _mapper.Map<PromoParkDTO>(promoPark); 
             _context.PromoParks.Add(data);
            await _context.SaveChangesAsync();
 
@@ -46,13 +41,7 @@ namespace PromoAPI.Repository
 
         public async Task UpdatePromoPark(int id, PromoParkModel promoParkModel)
         {
-            var data = new PromoParkDTO(){
-                 Id = promoParkModel.Id,
-                 Title = promoParkModel.Title,
-                 Sorce = promoParkModel.Sorce,
-                 Descbtion = promoParkModel.Descbtion,
-                 Date = promoParkModel.Date
-            };
+             var data =  _mapper.Map<PromoParkDTO>(promoPark); 
             _context.PromoParks.Update(data);
              await _context.SaveChangesAsync();
           
